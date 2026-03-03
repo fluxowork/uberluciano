@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luciano - Motorista Particular</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            color: #d0d0d0;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            animation: slideUp 0.8s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(192, 192, 192, 0.15);
+        }
+
+        .wheel {
+            width: 45px;
+            height: 45px;
+            border: 3px solid #1a1a1a;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .wheel::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .wheel::after {
+            content: '';
+            width: 4px;
+            height: 14px;
+            background: #1a1a1a;
+            position: absolute;
+            top: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #d0d0d0;
+            margin-bottom: 50px;
+            line-height: 1.8;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+            color: #1a1a1a;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(192, 192, 192, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #c0c0c0;
+            border: 2px solid #c0c0c0;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(192, 192, 192, 0.1);
+            color: #fff;
+            border-color: #fff;
+        }
+
+        .section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .services {
+            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(192, 192, 192, 0.1);
+            padding: 32px 24px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #c0c0c0;
+            transform: translateY(-8px);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: #a0a0a0;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+        }
+
+        .contact-items {
+            display: grid;
+            gap: 24px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(192, 192, 192, 0.15);
+            padding: 24px;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #c0c0c0;
+            transform: translateY(-4px);
+        }
+
+        .contact-label {
+            font-size: 12px;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .contact-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .link {
+            color: #c0c0c0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .link:hover {
+            color: #fff;
+        }
+
+        footer {
+            background: #1a1a1a;
+            border-top: 1px solid rgba(192, 192, 192, 0.1);
+            padding: 40px 20px;
+            text-align: center;
+            color: #a0a0a0;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 36px; }
+            .section-title { font-size: 28px; }
+            .buttons { flex-direction: column; }
+            .btn { width: 100%; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-icon">
+                <div class="wheel"></div>
+            </div>
+            <h1>Luciano</h1>
+            <p class="subtitle">Motorista Particular</p>
+            <p class="description">Serviço profissional e confiável para entregas, shows, turismos, aeroportos e trajetos de todas as distâncias.</p>
+            <div class="buttons">
+                <a href="#contact" class="btn btn-primary">📞 Entrar em Contato</a>
+                <a href="#services" class="btn btn-secondary">Ver Serviços</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services section" id="services">
+        <div class="container">
+            <h2 class="section-title">Serviços</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">📦</div>
+                    <h3 class="card-title">Entregas</h3>
+                    <p class="card-desc">Transporte rápido e seguro de encomendas</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎭</div>
+                    <h3 class="card-title">Shows & Eventos</h3>
+                    <p class="card-desc">Transporte para shows, festas e eventos</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">✈️</div>
+                    <h3 class="card-title">Aeroporto</h3>
+                    <p class="card-desc">Traslado confortável para e do aeroporto</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🚗</div>
+                    <h3 class="card-title">Turismo</h3>
+                    <p class="card-desc">Passeios seguros pela região</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📍</div>
+                    <h3 class="card-title">Trajetos Curtos</h3>
+                    <p class="card-desc">Deslocamentos dentro da cidade</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛣️</div>
+                    <h3 class="card-title">Trajetos Longos</h3>
+                    <p class="card-desc">Viagens de longa distância confortáveis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-items">
+                <div class="contact-card">
+                    <div class="contact-label">Telefone</div>
+                    <div class="contact-value">(15) 99183-1348</div>
+                    <a href="tel:+5515991831348" class="link">📞 Chamar</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-label">WhatsApp</div>
+                    <div class="contact-value">Mensagem Direta</div>
+                    <a href="https://wa.me/5515991831348" target="_blank" class="link">💬 Enviar Mensagem</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-label">Disponibilidade</div>
+                    <div class="contact-value">24 Horas</div>
+                    <p class="link">Atendimento todos os dias</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Luciano - Motorista Particular</p>
+        <p style="margin-top: 8px;">Serviço profissional e confiável desde o primeiro contato</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
